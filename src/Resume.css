@@ -1,0 +1,41 @@
+#resume {
+	& * {
+		/* outline: 1px solid red; */
+	}
+
+	width: 8.5in;
+	height: 11in;
+	background-color: var(--base-clr);
+	font-family: Georgia, Times, 'Times New Roman', serif;
+	padding: auto 1em;
+	line-height: 1.25;
+
+
+	.header {
+		text-align: center;
+		padding: 2em 1em 0em 1em;
+	}
+
+	.section {
+		padding: 1em 1em 0em 1em;
+	}
+
+	.subsection {
+		padding: 0.1em 1em 0em 1em;
+		margin-bottom: 5px;
+	}
+
+	.section-header {
+		border-bottom: 1px solid var(--text-clr);
+	}
+
+	.split-line {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.bullets {
+		padding-left: 2em;
+		font-size: 15px;
+	}
+}
