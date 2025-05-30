@@ -21,20 +21,36 @@ function App() {
     // Setup states with default values
     const [personal, setPersonal] = useState(Defaults.personal);
     const [education, setEducation] = useState(Defaults.education);
-    const [experience, setexperience] = useState(Defaults.experience);
+    const [experience, setExperience] = useState(Defaults.experience);
+    const [projects, setProjects] = useState(Defaults.projects);
+    const [skills, setSkills] = useState(Defaults.skills);
 
     console.log(education);
+    const asideProps = {
+        personal: personal,
+        setPersonal: setPersonal,
+        education: education,
+        setEducation: setEducation,
+        experience: experience,
+        setExperience: setExperience,
+        projects: projects,
+        setProjects: setProjects,
+        skills: skills,
+        setSkills: setSkills,
+    };
 
     return (
         <>
             <Nav btnClickHandler={() => setIsLightMode(!isLightMode)} />
             <main>
-                <Aside personalData={personal} setPersonalData={setPersonal} />
+                <Aside {...asideProps} />
                 <div id="resume-container">
                     <Resume
                         personal={personal}
                         education={education}
                         experience={experience}
+                        projects={projects}
+                        skills={skills}
                     />
                 </div>
             </main>

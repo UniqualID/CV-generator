@@ -1,6 +1,12 @@
 import './Resume.css';
 
-export default function Resume({ personal, education, experience }) {
+export default function Resume({
+    personal,
+    education,
+    experience,
+    projects,
+    skills,
+}) {
     const personalDataAux = [
         personal.phone,
         personal.email,
@@ -29,7 +35,10 @@ export default function Resume({ personal, education, experience }) {
                 <div className="subsection">
                     <div className="split-line">
                         <strong>{education.school}</strong>
-                        <div>{`${education.startDate} - ${education.endDate}`}</div>
+                        <DateRange
+                            startDate={education.startDate}
+                            endDate={education.endDate}
+                        />
                     </div>
                     <div className="split-line">
                         <i>{majorLine}</i>
@@ -37,7 +46,7 @@ export default function Resume({ personal, education, experience }) {
                     </div>
                     <strong>Relevant Coursework:</strong>
                     <br />
-                    <i>{education.coursework.join(',')}</i>
+                    <i>{education.coursework.join(', ')}</i>
                 </div>
             </div>
             <div className="section">
@@ -46,6 +55,20 @@ export default function Resume({ personal, education, experience }) {
                     {experience.map((exp, idx) => (
                         <Experience key={idx} exp={exp} />
                     ))}
+                </div>
+            </div>
+            <div className="section">
+                <div className="section-header">PROJECTS</div>
+                <div className="subsection">
+                    {projects.map((proj, idx) => (
+                        <Project key={idx} proj={proj} />
+                    ))}
+                </div>
+            </div>
+            <div className="section">
+                <div className="section-header">TECHNICAL SKILLS</div>
+                <div className="subsection">
+                    <Skills skills={skills}></Skills>
                 </div>
             </div>
         </div>
@@ -69,5 +92,62 @@ function Experience({ exp }) {
                 ))}
             </ul>
         </>
+    );
+}
+
+function Project({ proj }) {
+    return (
+        <>
+            <div>
+                <strong>{proj.name}</strong> | <i>{proj.tech}</i>
+            </div>
+            <ul className="bullets">
+                <li>{proj.description}</li>
+            </ul>
+        </>
+    );
+}
+
+function Skills({ skills }) {
+    return (
+        <>
+            <div>
+                <span style={{ fontWeight: 'bold' }}>Languages: </span>
+                <span>{skills.languages.join(', ')}</span>
+            </div>
+            <div>
+                <span style={{ fontWeight: 'bold' }}>Frameworks: </span>
+                <span>{skills.frameworks.join(', ')}</span>
+            </div>
+            <div>
+                <span style={{ fontWeight: 'bold' }}>Developer Tools: </span>
+                <span>{skills.developerTools.join(', ')}</span>
+            </div>
+            <div>
+                <span style={{ fontWeight: 'bold' }}>Libraries: </span>
+                <span>{skills.libraries.join(', ')}</span>
+            </div>
+        </>
+    );
+}
+
+function DateRange({ startDate, endDate }) {
+    console.log(startDate, endDate);
+    const startStr = new Date(startDate + '-01').toLocaleDateString('en-us', {
+        year: 'numeric',
+        month: 'short',
+        timeZone: 'UTC',
+    });
+    const endStr = endDate
+        ? new Date(endDate + '-01').toLocaleDateString('en-us', {
+              year: 'numeric',
+              month: 'short',
+              timeZone: 'UTC',
+          })
+        : 'now';
+    return (
+        <div>
+            {startStr} - {endStr}
+        </div>
     );
 }

@@ -5,7 +5,7 @@
 
 :root {
 	--nav-height: 60px;
-	--aside-width: 400px;
+	--aside-width: 450px;
 	--indicator-red: #FF8989;
 	--indicator-yellow: #F8ED8C;
 	--indicator-green: #89AC46;
@@ -151,12 +151,20 @@ aside {
 
 .input-form {
 	display: flex;
-	padding-left: 2em;
+	padding: 1em 2em;
 	gap: 1em;
 	flex-wrap: wrap;
 }
 
 .input-unit {
+	display: flex;
+	flex-direction: column-reverse;
+	flex: 1 0 350px;
+
+	&.whole-row {
+		flex: 1 1 700px;
+	}
+
 	&>label {
 		color: var(--secondary-text-clr)
 	}
@@ -165,6 +173,8 @@ aside {
 		padding: 10px;
 		border-radius: calc(var(--corner-radius)/2);
 		border: 1px solid var(--line-clr);
+		color: var(--text-clr);
+		background-color: var(--base-clr);
 
 		&:required+label::after {
 			content: ' *';
@@ -182,9 +192,19 @@ aside {
 		}
 	}
 
-	display: flex;
-	flex-direction: column-reverse;
-	flex: 1 0 350px;
+}
+
+.section-list {
+	padding: 1em 2em;
+}
+
+.list-item {
+	padding: 1em;
+	border-bottom: 1px solid var(--line-clr);
+}
+
+.list-item:last-of-type {
+	border: none;
 }
 
 #resume-container {

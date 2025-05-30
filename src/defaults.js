@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export default {
     personal: {
         firstName: 'John',
@@ -13,8 +15,8 @@ export default {
         degree: 'B.S.',
         major: 'Computer Science',
         minor: 'Tech Management',
-        startDate: 'Sep 2022',
-        endDate: 'Jun 2026',
+        startDate: '2022-09',
+        endDate: '2026-06',
         gpa: '3.87',
         coursework: [
             'Data Structures',
@@ -30,11 +32,12 @@ export default {
     },
     experience: [
         {
+            id: uuidv4(),
             title: 'Software Engineer',
             company: 'Render Labs',
             location: 'New York, NY',
-            startDate: 'Jan 2025',
-            endDate: 'Apr 2025',
+            startDate: '2025-01',
+            endDate: '2025-04',
             bullets: [
                 'Developed an automated, usage-based billing system leveraging Circle’s SDK, processing payments and eliminating 5–10 hours/week of manual effort.',
                 'Optimized 3D asset backend using Next.js and Supabase, improving task handling and boosting user responsiveness by 50%.',
@@ -42,11 +45,12 @@ export default {
             ],
         },
         {
+            id: uuidv4(),
             title: 'Software Engineer',
             company: 'Render Labs',
             location: 'San Francisco, CA',
-            startDate: 'Oct 2024',
-            endDate: 'Dec 2024',
+            startDate: '2024-10',
+            endDate: '2024-12',
             bullets: [
                 'Enabled log monitoring in VS Code using WebSocket communication for real-time debugging.',
                 'Built a Retrieval-Augmented Generation chatbot to reduce support load for Render’s 100k+ monthly users.',
@@ -54,11 +58,12 @@ export default {
             ],
         },
         {
+            id: uuidv4(),
             title: 'Software Engineer Intern',
             company: 'SynthStream Inc.',
             location: 'Tokyo, JP',
-            startDate: 'Jun 2024',
-            endDate: 'Aug 2024',
+            startDate: '2024-06',
+            endDate: '2024-08',
             bullets: [
                 'Reduced thumbnail generation time by 70% using Sharp.js via Express.js async API.',
                 'Built React-DnD timeline editor for video usability.',
@@ -66,11 +71,12 @@ export default {
             ],
         },
         {
+            id: uuidv4(),
             title: 'Software Engineer Intern',
             company: 'BlockData LLC',
             location: 'Remote',
-            startDate: 'Jul 2023',
-            endDate: 'Sep 2023',
+            startDate: '2023-06',
+            endDate: '2024-09',
             bullets: [
                 'Developed Java Spring Boot microservice for real-time crypto market data ingestion via Binance API (8,000+ data pts/sec) → AWS RDS.',
                 'Improved stability by resolving 5 critical bugs and achieved 90% unit test coverage using JUnit.',
@@ -79,12 +85,14 @@ export default {
     ],
     projects: [
         {
+            id: uuidv4(),
             name: 'Parallel Transactional & Analytical Database System',
             tech: 'Python - Database Systems',
             description:
                 'Multi-threaded Python DB for OLTP/OLAP with MVCC/2PL-locking.',
         },
         {
+            id: uuidv4(),
             name: 'Financial Decision Prediction Model',
             tech: 'Python - AISC',
             description:

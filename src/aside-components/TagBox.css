@@ -1,0 +1,33 @@
+.tag-box {
+	border-radius: calc(var(--corner-radius)/2);
+	border: 1px solid var(--line-clr);
+	padding: 1em;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+
+	&>span {
+		display: flex;
+		border-radius: calc(var(--corner-radius)/2);
+		border: 1px solid var(--line-clr);
+		padding: .5em 0em .5em 1em;
+		background-color: var(--base-variant-clr);
+
+		svg {
+			padding: .25em;
+
+			&:hover {
+				transform: scale(1.2)
+			}
+		}
+	}
+
+	&>input[type="text"] {
+		flex-grow: 1;
+		background-color: inherit;
+		border: none;
+		outline: none;
+		padding-left: .25em;
+
+	}
+}
