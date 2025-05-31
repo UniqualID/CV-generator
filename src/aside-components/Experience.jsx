@@ -1,9 +1,13 @@
+import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
+
 export default function ExperienceComponent({
     isActive,
     onShow,
     data,
     setData,
 }) {
+    const [currentJob, setCurrentJob] = useState('');
     const onChange = (expId, prop, value) => {
         setData(
             data.map((exp) => {
@@ -18,6 +22,46 @@ export default function ExperienceComponent({
                 }
             })
         );
+    };
+
+    const handleDelete = (expId) => {
+        setData(data.filter((exp) => exp.id !== expId));
+    };
+
+    const setJob = (e, expId) => {
+        if (currentJob === expId) {
+            setCurrentJob('');
+            e.target.checked = false;
+        } else {
+            setCurrentJob(expId);
+            e.target.checked = true;
+        }
+        setData(
+            data.map((exp) => {
+                if (exp.id === expId) {
+                    return {
+                        ...exp,
+                        endDate: '',
+                    };
+                }
+                return exp;
+            })
+        );
+    };
+
+    const handleAdd = () => {
+        setData([
+            ...data,
+            {
+                id: uuidv4(),
+                title: '',
+                company: '',
+                location: '',
+                startDate: '',
+                endDate: '',
+                bullets: [],
+            },
+        ]);
     };
     return (
         <li>
@@ -49,8 +93,8 @@ export default function ExperienceComponent({
                 <div className="submenu-container">
                     <ul className="section-list">
                         {data.map((exp) => (
-                            <div className="input-form list-item">
-                                <div className="input-unit" key={exp.id}>
+                            <div className="input-form list-item" key={exp.id}>
+                                <div className="input-unit">
                                     <input
                                         type="text"
                                         id={`expCompany-${exp.id}`}
@@ -67,7 +111,7 @@ export default function ExperienceComponent({
                                         Company
                                     </label>
                                 </div>
-                                <div className="input-unit" key={exp.id}>
+                                <div className="input-unit">
                                     <input
                                         type="text"
                                         id={`expTitle-${exp.id}`}
@@ -84,7 +128,7 @@ export default function ExperienceComponent({
                                         Title
                                     </label>
                                 </div>
-                                <div className="input-unit" key={exp.id}>
+                                <div className="input-unit">
                                     <input
                                         type="month"
                                         id={`expStartDate-${exp.id}`}
@@ -101,7 +145,7 @@ export default function ExperienceComponent({
                                         Start Month
                                     </label>
                                 </div>
-                                <div className="input-unit" key={exp.id}>
+                                <div className="input-unit">
                                     <input
                                         type="month"
                                         id={`expEndDate-${exp.id}`}
@@ -113,14 +157,73 @@ export default function ExperienceComponent({
                                                 e.target.value
                                             )
                                         }
+                                        disabled={currentJob === exp.id}
                                     />
                                     <label htmlFor={`expEndDate-${exp.id}`}>
                                         End Month
                                     </label>
                                 </div>
+                                <div className="input-unit">
+                                    <input
+                                        type="text"
+                                        id={`expLocation-${exp.id}`}
+                                        value={exp.location}
+                                        onChange={(e) =>
+                                            onChange(
+                                                exp.id,
+                                                'location',
+                                                e.target.value
+                                            )
+                                        }
+                                    />
+                                    <label htmlFor={`expLocation-${exp.id}`}>
+                                        Location
+                                    </label>
+                                </div>
+                                <div className="input-unit whole-row">
+                                    <textarea
+                                        id={`expBullets-${exp.id}`}
+                                        value={exp.bullets.join('|')}
+                                        onChange={(e) =>
+                                            onChange(
+                                                exp.id,
+                                                'bullets',
+                                                e.target.value.split('|')
+                                            )
+                                        }
+                                    />
+                                    <label htmlFor={`expBullets-${exp.id}`}>
+                                        Job Description (| delimited)
+                                    </label>
+                                </div>
+                                <div className="input-unit">
+                                    <input
+                                        className="toggle"
+                                        type="checkbox"
+                                        id={`expCurrent-${exp.id}`}
+                                        checked={currentJob === exp.id}
+                                        onClick={(e) => setJob(e, exp.id)}
+                                    />
+                                    <label htmlFor={`expCurrent-${exp.id}`}>
+                                        Current Job?
+                                    </label>
+                                </div>
+                                <div className="input-unit whole-row">
+                                    <button
+                                        className="deleteBtn"
+                                        onClick={() => handleDelete(exp.id)}
+                                    >
+                                        Delete Experience
+                                    </button>
+                                </div>
                             </div>
                         ))}
                     </ul>
+                    <div className="input-form">
+                        <button className="addBtn" onClick={handleAdd}>
+                            Add Experience
+                        </button>
+                    </div>
                 </div>
             </div>
         </li>

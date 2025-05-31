@@ -80,7 +80,7 @@ function Experience({ exp }) {
         <>
             <div className="split-line">
                 <strong>{exp.title}</strong>
-                <div>{`${exp.startDate} - ${exp.endDate}`}</div>
+                <DateRange startDate={exp.startDate} endDate={exp.endDate} />
             </div>
             <div className="split-line">
                 <div>{exp.company}</div>

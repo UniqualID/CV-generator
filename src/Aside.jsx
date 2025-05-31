@@ -18,38 +18,44 @@ export default function Aside({
     skills,
     setSkills,
 }) {
-    const [activeIdx, setActiveIdx] = useState(0);
-
+    const [activeIdx, setActiveIdx] = useState(-1);
+    const toggleIdx = (idx) => {
+        if (activeIdx === idx) {
+            setActiveIdx(-1);
+        } else {
+            setActiveIdx(idx);
+        }
+    };
     return (
         <aside>
             <ul>
                 <PersonalComponent
                     isActive={activeIdx === 0}
-                    onShow={() => setActiveIdx(0)}
+                    onShow={() => toggleIdx(0)}
                     data={personal}
                     setData={setPersonal}
                 />
                 <EducationComponent
                     isActive={activeIdx === 1}
-                    onShow={() => setActiveIdx(1)}
+                    onShow={() => toggleIdx(1)}
                     data={education}
                     setData={setEducation}
                 />
                 <ExperienceComponent
                     isActive={activeIdx === 2}
-                    onShow={() => setActiveIdx(2)}
+                    onShow={() => toggleIdx(2)}
                     data={experience}
                     setData={setExperience}
                 />
                 <ProjectsComponent
                     isActive={activeIdx === 3}
-                    onShow={() => setActiveIdx(3)}
+                    onShow={() => toggleIdx(3)}
                     data={projects}
                     setData={setProjects}
                 />
                 <SkillsComponent
                     isActive={activeIdx === 4}
-                    onShow={() => setActiveIdx(4)}
+                    onShow={() => toggleIdx(4)}
                     data={skills}
                     setData={setSkills}
                 />
